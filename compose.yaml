@@ -1,0 +1,24 @@
+# Main compose file defining the autodarts extensions
+
+services:
+  darts-caller:
+    image: lbormann/darts-caller
+    container_name: darts-caller
+    restart: unless-stopped
+# Will not be exposed if using proxy
+    ports:
+      - "8079:8079"
+    env_file:
+      - caller_secrets.env
+      - caller_settings.env
+    volumes:
+    - ./darts-caller:/usr/share/darts-caller
+  darts-wled:
+    depends_on:
+      - darts-caller
+    image: creaaz/darts-wled
+    container_name: darts-wled
+    restart: unless-stopped
+    env_file:
+      - wled_settings.env
+      

@@ -1,0 +1,15 @@
+# Adds an Nginx Proxy Manager to the stack to manage reverse proxy routes and SSL certificates
+
+services:
+  proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    volumes:
+      - ./proxy/data:/data
+      - ./proxy/letsencrypt:/etc/letsencrypt
+  darts-caller:
+    ports: !reset []

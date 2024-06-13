@@ -1,0 +1,6 @@
+# Mounting /dev/snd on supported devices to enable local playback for caller
+
+services:
+  darts-caller:
+    devices:
+      - /dev/snd:/dev/snd
