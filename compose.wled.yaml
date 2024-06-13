@@ -1,0 +1,11 @@
+# Adds darts-wled service to the stack
+
+services:
+  darts-wled:
+    depends_on:
+      - darts-caller
+    image: creaaz/darts-wled
+    container_name: darts-wled
+    restart: unless-stopped
+    env_file:
+      - wled_settings.env
