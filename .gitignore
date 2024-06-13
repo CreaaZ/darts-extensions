@@ -1,3 +1,4 @@
-caller_secrets_test.env
+.env
+caller_secrets.env
 darts-caller/*
 proxy/*
