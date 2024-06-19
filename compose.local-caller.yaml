@@ -1,6 +1,11 @@
-# Mounting /dev/snd on supported devices to enable local playback for caller
+# Using pipewire-0 socket from the host for the darts-caller service to play audio
+# Tested on a Raspberry Pi 4
+# Raspberry Pi must be configured to use PipeWire as the default audio server via raspi-config
 
 services:
   darts-caller:
-    devices:
-      - /dev/snd:/dev/snd
+    image: creaaz/darts-caller-pipewire:latest
+    volumes:
+      - /run/user/1000/pipewire-0:/tmp/pipewire-0
+    environment:
+      - XDG_RUNTIME_DIR=/tmp
